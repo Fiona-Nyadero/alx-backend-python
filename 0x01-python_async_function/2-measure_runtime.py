@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+'''Module measures the runtime'''
+import time
+import asyncio
+
+
+wait_n = __import__('1-concurrent_coroutines').wait_n
+
+
+def measure_time(n: int, max_delay: int) -> float:
+    '''Function returns the totlat time taken in delays'''
+    total_time = 0
+    stime = time.perf_counter()
+    asyncio.run(wait_n(n, max_delay))
+    etime = time.perf_counter()
+    total_time = etime - stime
+    return total_time / n
